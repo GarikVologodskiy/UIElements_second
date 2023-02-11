@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var countLabel: UILabel!
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
         textView.delegate = self
         
         textView.isHidden = true
-        textView.alpha = 0
+//        textView.alpha = 0
         
 //        textView.text = ""
 
@@ -42,32 +43,48 @@ class ViewController: UIViewController {
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled = false
         
+        progressView.setProgress(0, animated: true)
+        
         
 //        'beginIgnoringInteractionEvents()' was deprecated in iOS 13.0: Use UIView's userInteractionEnabled property instead
 //        UIApplication.shared.beginIgnoringInteractionEvents()
         
+        // Keyboard appearence tracking
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTextView(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         
+        //Keyboard hide tracking
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTextView(notification:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         
-        UIView.animate(withDuration: 0, delay: 3, options: .curveEaseIn, animations: {
-            self.textView.alpha = 1
-        }) { (finished) in
-            self.activityIndicator.stopAnimating()
-            self.textView.isHidden = false
-            self.view.isUserInteractionEnabled = true
-            
-    //        'beginIgnoringInteractionEvents()' was deprecated in iOS 13.0: Use UIView's userInteractionEnabled property instead
+//        UIView.animate(withDuration: 0, delay: 5, options: .curveEaseIn, animations: {
+//            self.textView.alpha = 1
+//        }) { (finished) in
+//            self.activityIndicator.stopAnimating()
+//            self.textView.isHidden = false
+//            self.view.isUserInteractionEnabled = true
+//
+//    //        'beginIgnoringInteractionEvents()' was deprecated in iOS 13.0: Use UIView's userInteractionEnabled property instead
 //             UIApplication.shared.endIgnoringInteractionEvents()
+//        }
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            if self.progressView.progress != 1 {
+                self.progressView.progress += 0.2
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.textView.isHidden = false
+                self.view.isUserInteractionEnabled = true
+                self.progressView.isHidden = true
+            }
         }
     }
     
+    // Hide keyboard on tap outside TextView
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         

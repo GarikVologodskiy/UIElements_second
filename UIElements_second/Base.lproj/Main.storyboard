@@ -42,15 +42,21 @@ The appearance of the keyboard itself can be customized using the properties pro
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="yMN-v3-gkY">
                                 <rect key="frame" x="186.66666666666666" y="409" width="20" height="20"/>
                             </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dXb-z4-rYM">
+                                <rect key="frame" x="28" y="155" width="337" height="4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.0" green="0.99960237741470337" blue="0.57746011018753052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="dXb-z4-rYM" firstAttribute="top" secondItem="QkG-Xh-SEE" secondAttribute="top" id="14P-HL-Vpv"/>
+                            <constraint firstItem="dXb-z4-rYM" firstAttribute="centerX" secondItem="QkG-Xh-SEE" secondAttribute="centerX" id="D5f-2Q-2SQ"/>
                             <constraint firstItem="yMN-v3-gkY" firstAttribute="centerY" secondItem="QkG-Xh-SEE" secondAttribute="centerY" id="IrN-hW-mBJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c8b-Lq-KSn" secondAttribute="trailing" constant="28" id="Kba-7G-7Hw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="b4X-2Z-OMG" secondAttribute="trailing" constant="350" id="LxI-wS-8Rn"/>
                             <constraint firstItem="b4X-2Z-OMG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="41" id="PxO-Xz-bF8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QkG-Xh-SEE" secondAttribute="trailing" constant="28" id="Ran-nr-Sba"/>
+                            <constraint firstItem="dXb-z4-rYM" firstAttribute="width" secondItem="QkG-Xh-SEE" secondAttribute="width" id="VO6-bJ-5VN"/>
                             <constraint firstItem="b4X-2Z-OMG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="ad9-BS-y8o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QkG-Xh-SEE" secondAttribute="bottom" constant="135" id="gCV-yp-VXE"/>
                             <constraint firstItem="QkG-Xh-SEE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="28" id="gn0-mj-NLM"/>
@@ -62,6 +68,7 @@ The appearance of the keyboard itself can be customized using the properties pro
                     <connections>
                         <outlet property="activityIndicator" destination="yMN-v3-gkY" id="CUc-Iy-abk"/>
                         <outlet property="countLabel" destination="b4X-2Z-OMG" id="fR9-wd-tR9"/>
+                        <outlet property="progressView" destination="dXb-z4-rYM" id="6Mm-2e-eOo"/>
                         <outlet property="stepper" destination="c8b-Lq-KSn" id="dgs-Z9-f7H"/>
                         <outlet property="textView" destination="QkG-Xh-SEE" id="AKq-SW-vMO"/>
                         <outlet property="textViewBottomConstraint" destination="gCV-yp-VXE" id="9sk-ln-G3v"/>
