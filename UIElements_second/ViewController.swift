@@ -40,12 +40,11 @@ class ViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = .darkGray
         activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
         
         
 //        'beginIgnoringInteractionEvents()' was deprecated in iOS 13.0: Use UIView's userInteractionEnabled property instead
 //        UIApplication.shared.beginIgnoringInteractionEvents()
-        
-        view.isUserInteractionEnabled = false
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTextView(notification:)),
@@ -57,7 +56,7 @@ class ViewController: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         
-        UIView.animate(withDuration: 0, delay: 5, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0, delay: 3, options: .curveEaseIn, animations: {
             self.textView.alpha = 1
         }) { (finished) in
             self.activityIndicator.stopAnimating()
@@ -126,4 +125,3 @@ extension ViewController: UITextViewDelegate {
         return textView.text.count + (text.count - range.length) <= 3000
     }
 }
-
